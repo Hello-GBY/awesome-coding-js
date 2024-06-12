@@ -62,3 +62,29 @@ var hasCycle = function(head) {
 
 
 # 146. LRU 缓存
+
+```js
+var LRUCache = function(capacity) {
+  this.cache = new Map();
+  this.maxLen = capacity
+};
+
+LRUCache.prototype.get = function(key) {
+    let value = this.cache.get(key)
+    if(this.cache.has(key)) {
+        this.cache.delete(key)
+        this.cache.set(key, value)
+        return value
+    }
+    return -1
+};
+
+LRUCache.prototype.put = function(key, value) {
+    if(this.cache.has(key)) {
+        this.cache.delete(key);
+    } else if(this.cache.size >= this.maxLen) {
+        this.cache.delete(this.cache.keys().next().value)
+    }
+    this.cache.set(key, value);
+};
+```
