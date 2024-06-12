@@ -21,3 +21,41 @@ var removeElements = function(head, val) {
     return head.val == val ? head.next : head
 };
 ```
+# 141. 环形链表
+https://leetcode.cn/problems/linked-list-cycle/
+## 进阶解法， 空间复杂度 O(1) 的情况
+
+```js
+var hasCycle = function(head) {
+    let p = new Set()
+     while(head){
+        if(p.has(head)) return true
+        p.add(head)
+        head = head.next
+     }
+     return false
+
+    // let fast = head
+    // let last = head
+    // while(fast && fast.next){
+        
+    //     fast = fast.next.next;
+    //     last = last.next;
+    //     if(fast === last) return true
+    // }
+    // return false
+
+    // let cur = head
+    // let res= false
+    // while(cur) {
+    //     if(cur.f){
+    //         res = true
+    //          break;
+    //     }
+    //      cur.f = true
+    //     cur = cur.next
+    // }
+    // return res
+};
+
+```
